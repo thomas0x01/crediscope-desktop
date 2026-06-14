@@ -1,0 +1,50 @@
+appId: com.crediscope.llm
+productName: Crediscope LLM
+copyright: Copyright © 2026
+
+directories:
+  output: dist
+  buildResources: assets
+
+files:
+  - main.js
+  - preload.js
+  - package.json
+
+extraResources:
+  - from: "../crediscope-llm/dist"
+    to: "crediscope-llm/dist"
+    filter:
+      - "**/*"
+
+mac:
+  category: public.app-category.finance
+  icon: assets/icon.png
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  hardenedRuntime: false
+
+dmg:
+  title: Crediscope LLM
+  artifactName: ${name}-${version}-${arch}.${ext}
+
+win:
+  icon: assets/icon.png
+  target:
+    - target: nsis
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: ${name}-${version}-setup.${ext}
+
+publish:
+  provider: github
+  owner: thomas0x01
+  repo: crediscope-desktop
+  releaseType: release
